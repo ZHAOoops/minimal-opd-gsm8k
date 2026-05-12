@@ -1,0 +1,10 @@
+transformers
+datasets
+accelerate
+sentencepiece
+protobuf
+tiktoken
+einops
+tqdm
+pyyaml
+pandas
