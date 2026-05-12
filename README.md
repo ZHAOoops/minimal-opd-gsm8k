@@ -1,8 +1,8 @@
 # Minimal OPD GSM8K
 
-这是一个最小化的 On-Policy Distillation 实验，用来验证 Thinking Machines Lab 关于 OPD 的核心想法。
+一个最小化的 On-Policy Distillation 实验，用来验证 Thinking Machines Lab 关于 OPD 的核心想法。
 
-本项目不是官方实现，也不追求完整复现官方结果。目标是用尽量少的代码，在 GSM8K 上观察到 OPD 的有效训练信号。
+目标是用尽量少的代码，观察到 OPD 的有效训练信号。
 
 ## 核心思路
 
@@ -20,7 +20,7 @@
 
     KL(student || teacher)
 
-也就是 reverse KL。
+即 reverse KL。
 
 ## 实验环境
 
@@ -77,8 +77,6 @@ completion 起始位置为 prompt_len。CausalLM logits 需要做 shift：
 ### 3. student on-policy 生成
 
 每个训练 step 都使用当前 student 生成 completion，再让 teacher 在这条 student 轨迹上提供分布信号。
-
-这和普通 teacher 离线生成答案再 SFT 不一样。
 
 ### 4. 截断答案后的尾部噪声
 
@@ -382,5 +380,3 @@ GSM8K 要求 final answer 放在：
 1. 本项目只是小规模 sanity check，不是官方复现。
 2. 当前主要报告 GSM8K test 前 300 条，不代表完整 benchmark。
 3. 结果会受 prompt、seed、答案抽取、生成长度影响。
-4. 模型有时仍可能重复 final answer，本项目重点是验证 OPD 训练信号，不是打磨最终模型。
-5. 不建议把 checkpoints 直接提交到 GitHub。
